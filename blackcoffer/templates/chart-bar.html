@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+  <main>
+    <div class="container-fluid px-4">
+      <h1 class="mt-4">Chart {{ title }} - Country</h1>
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Your Website 2022</div>
+        <div>
+          <a href="#">Privacy Policy</a>
+          &middot;
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% endblock content %}
+{% block script %}
+  <script>
+      var ctx = document.getElementById("myChart");
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: {{ data.lable1|safe}},
+          datasets: [{
+            lineTension: 0.3,
+            backgroundColor: "rgba(2,117,216,0.2)",
+            borderColor: "rgba(2,117,216,1)",
+            pointRadius: 5,
+            pointBackgroundColor: "rgba(2,117,216,1)",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(2,117,216,1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data: {{data.data|safe}},
+          }
+          
+          
+          ],
+        },
+        options: {
+          scales: {
+            xAxes: [{
+              gridLines: {
+                display: false,
+              },
+              ticks: {
+                min: 0,
+                max:1000,
+                maxTicksLimit:20
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                min: 0,
+                max: {{limits|safe}},
+                maxTicksLimit: 15
+              },
+              gridLines: {
+                color: "rgba(0, 0, 0, .125)",
+              }
+            }],
+          },
+          legend: {
+            display:false,
+          }
+        }
+      });
+  </script>
+{% endblock %}

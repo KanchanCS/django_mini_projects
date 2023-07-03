@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <div class="box">
+        <div class="head">
+            <h1>
+                <i class="fa fa-user text-success" aria-hidden="true"></i> Login Form
+            </h1>
+        </div>
+        <div class="content">
+            <form method="post">
+
+                {% csrf_token %}
+                <div class="alert-danger mt-3 mb-5">
+                    {{form.errors}}
+                </div>
+                <div class="py-2 mb-2  input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="id_username"> <i class="fa fa-envelope"
+                                aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" name="username"  placeholder="Email address" maxlength="254"
+                        class="form-control" required="" id="id_username">
+                </div>
+                <div class="py-2 mb-2  input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="id_password"> <i class="fa fa-key"
+                                aria-hidden="true"></i></span>
+                    </div>
+                    <input type="password" name="password" class="form-control" required="" id="id_password">
+                </div>
+                <div class="child-box d-flex align-center-center justify-content-around">
+                    <div>
+                        <a href="{% url 'account:register' %}" class="btn btn-danger py-2" style="width: 200px;">
+                            Register <i class="fa fa-user-circle" aria-hidden="true"></i> </a>
+                        <div class="help-text" style="font-size:13px; color: #777;">
+                            if user is not registered : Click Me
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary p-2" value="Login" style="width: 200px;" />
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

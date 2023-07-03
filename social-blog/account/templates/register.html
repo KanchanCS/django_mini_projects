@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-6 m-5">
+            <div class="card">
+                <div class="card-title text-center py-4">
+                    <h1>Regiter User</h1>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

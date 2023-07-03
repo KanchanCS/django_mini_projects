@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <div class="row d-flex justify-content-center p-5">
+    <div class="col-md-8">
+      <div class="card post-card ">
+        <div class="card-header">
+          <h1 class="h1">Recent Feeds</h1>
+        </div>
+        {% for post in post_detail  %}
+        {% if post.upload_file.url|slice:"-4:" == ".mp4" %}
+          <video src="{{post.upload_file.url}}" autoplay="true" loop="true" controls=true></video>
+          <p class="m-1 text-danger">{{post.caption|title}}</>
+        {% else %}
+          <img src="{{post.upload_file.url}}" alt="">
+          <p class="m-1 text-danger">{{post.caption|title}}</>
+        {% endif %}
+        <div class="card-body p-2">
+          <div class="card-titie">
+            <h5 class="m-0">{{post.name}}</h5>
+            <p class="text-justify">
+              {{post.content}}
+            </p>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <p>{{post.create_date|timesince}} ago. | Post Create By:{{post.user.username}}</p>
+          <p>
+            <form method="POST" class="">
+                  {% csrf_token %}
+
+                  {% if user_is_liked %}
+
+                  <button class="btn btn-danger" type="submit" formaction="{% url 'blog:unlike' post.id %}">
+                      <i class="fa fa-heartbeat" aria-hidden="true"></i> Unlike
+                  </button>
+                  {% else %}
+                  <button class="btn btn-primary" type="submit" formaction="{% url 'blog:like' post.id %}">
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                      Like 
+                  </button>
+                  
+                  {% endif %}
+              </form>
+              <button class="btn btn-outline-primary">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> {{liked_count}}
+              </button>
+          </p>
+      </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

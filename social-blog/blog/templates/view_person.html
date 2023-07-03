@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row d-flex justify-content-center p-5">
+        <div class="col-md-8 d-flex justify-content-between aligin-items-center">
+            <div>
+                <h1>{{user.username}}</h1>
+            </div>
+            <div>
+                <form method="POST" class="">
+                    {% csrf_token %}
+
+                    {% if user_is_following %}
+
+                    <button class="btn btn-danger" type="submit" formaction="{% url 'blog:unfollow' user.id %}">
+                        <i class="fa fa-minus" aria-hidden="true"></i> Unfollow
+                    </button>
+                    {% else %}
+                    <button class="btn btn-primary" type="submit" formaction="{% url 'blog:follow' user.id %}">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Follow
+                    </button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <hr>
+            <h2 class="h1">Recent Feeds</h2>
+            <hr>
+        </div>
+        {% if user_is_following %}
+
+
+        {% for blog in posts %}
+        <div class="col-md-8 mb-5">
+            <div class="card">
+                <div class="card-body p-2">
+                    <div class="card-titie">
+                      <h5 class="m-0">{{blog.name}}</h5>
+                    </div>
+                    <div class="card-text">
+                      <span class="captions">{{blog.caption}}</span>
+                      <p><i class="fas fa-user-circle small-text"></i> Post By: {{blog.user}}</p>
+                      <a href="{% url 'blog:post-detail' blog.id %}"  
+                      target="_blank" rel="noopener noreferrer" 
+                      class="btn btn-outline-primary p-2">
+                      View 
+                      <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+          
+                  </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-md-8">
+            <div class="card post-card ">
+                <div class="card-body">
+                    <h2>
+                        Follow the Person and get the latest Post...
+                    </h2>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

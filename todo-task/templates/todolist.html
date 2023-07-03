@@ -1,0 +1,71 @@
+<style>
+    body{
+        background-color: #ccc;
+    }
+    .card{
+        background-color: #fafafa;
+        padding: 16px;
+        margin: 16px;
+        width: 500px;
+        max-width: 100%;
+        border: 1px solid #aaa;
+        box-shadow: 4px 4px 8px #aaa;
+    }
+    .card-form input{
+        padding: 5px;
+        width: 100%;
+        margin: 5px;
+        border: 1px solid #070123;
+        box-shadow: 0px 0px 5px #aaa;
+    }
+    .card-form input[type=submit]{
+        background-color: #070123;
+        color: #fafafa;
+        text-transform: uppercase;
+        width: 180px;
+    }
+    .card-form input[type=text]{
+        background-color: #fff;
+        text-transform: capitalize;
+        height: 40px;
+    }
+    ::placeholder{
+        color: #070123;
+        text-transform: capitalize;
+    }
+    h2{
+        margin: 16px;
+        color: rgb(6, 9, 55);
+    }
+    .card-list{
+       padding: 10px;
+    }
+    h3, p{
+        padding: 0px;
+        margin: 0px;
+    }
+
+</style>
+
+
+
+
+<h2>Add Task </h2>
+<div class="card card-form">
+    
+    <form action="/addTodo/" method="post">{% csrf_token %}
+        <input type="text" name="content" placeholder="Enter task here..">
+        <input type="submit" value="Add Item">
+    </form>
+</div>
+
+<div class="task-list">
+    <h2>My To Do List</h2>
+    {% for i in all_items %}
+    <div class="card card-list">
+        <h3>Task: {{forloop.counter}}</h3>
+        <p>{{i.content}} |  <a href="{% url 'todoapp:delete' i.id %}">Delete</a> </p>
+       
+    </div>
+    {% endfor %}
+</div>

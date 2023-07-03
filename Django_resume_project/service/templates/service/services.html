@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %} 
+{% block content %}
+<div class="mt-5">
+    <h1 class="text-warning mb-5 border-bottom">SERVICES</h1>
+    <div class="row text-center text-white mb-5">
+        {% for service in  context %}
+        <div class="col-sm-4">
+            <i class="{{service.icon}} fa-2x mb-3 i-colo"></i>
+            <h3>{{service.heading}}</h3>
+            <p>{{service.discription}}</p>
+        </div>
+          
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

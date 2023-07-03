@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="box p-5 text-center">
+
+{% if request.user.is_authenticated %}
+<div class="box-content">
+    <div class="card-title align-center">
+        <h1>
+            <i class="fa fa-user-circle text-warning" aria-hidden="true"></i> <br>
+            Welcome  User !
+        </h1>
+    </div>
+    
+
+    <div class="card-content">
+        <h3 class="text-success">
+            {{ message }} 
+        </h3>
+    </div>
+   
+
+</div>
+{% endif %}
+
+</div>
+
+{% endblock content %}

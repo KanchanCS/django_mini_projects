@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="container">
+    <div class="box">
+        <div class="head">
+            <h1>
+                <i class="fa fa-user text-danger" aria-hidden="true"></i> Registration Form
+            </h1>
+        </div>
+        <div class="content">
+            <form method="post">
+                {% csrf_token %}
+                <div class="alert-danger mt-3 mb-5">
+                    {{form.errors}}
+                </div>
+                <div class="mb-2 py-2  input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="id_email"> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    </div>
+                    <input class="form-control" autocomplete="off" type="email" name="email" maxlength="254" required="" id="id_email"
+                        placeholder="Email" />
+                </div>
+                <div class="mb-2 py-2  input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="id_phone"> <i class="fa fa-phone" aria-hidden="true"></i></span>
+                    </div>
+                    <input class="form-control" autocomplete="off" type="phone" name="phone" maxlength="10" required="" id="id_phone"
+                        placeholder="phone" />
+                </div>
+                <div class="mb-2 py-2  input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="address"> <i class="fa fa-address-book" aria-hidden="true" aria-hidden="true"></i></span>
+                    </div>
+                    <input class="form-control" autocomplete="off" type="address" name="address" maxlength="254" required="" id="id_address"
+                        placeholder="address" />
+                </div>
+                <div class="mb-2 py-2 input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="id_password1"> <i class="fa fa-key" aria-hidden="true"></i></span>
+                    </div>
+                    <input class="form-control" type="password" name="password1" required="" id="id_password1"
+                        placeholder="Password" />
+                </div>
+                <div class="mb-2 py-2 input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="id_password2"> <i class="fa fa-key" aria-hidden="true"></i></span>
+                    </div>
+                    <input class="form-control" type="password" name="password2" required="" id="id_password2"
+                        placeholder="Re-type Password" />
+                </div>
+                <div class="row mb-2 py-2 ">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="id_first_name"> <i class="fa fa-user" aria-hidden="true"></i></span>
+                            </div>
+                            <input class="form-control" type="text" name="first_name" maxlength="150" id="id_first_name"
+                                placeholder="First name" />
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="id_last_name"> <i class="fa fa-user" aria-hidden="true"></i></span>
+                            </div>
+                            <input class="form-control" type="text" name="last_name" maxlength="150" id="id_last_name"
+                                placeholder="Last Name" />
+                        </div>
+                    </div>
+                </div>
+                <div id="id_gender" class="row py-2">
+                    <div class="col-2 ">
+                        <label for="id_gender_0">
+                            <input type="radio" name="gender" value="M" required="" id="id_gender_0" />
+                            Male</label>
+                    </div>
+                    <div class="col-3">
+                        <label for="id_gender_1"><input type="radio" name="gender" value="F" required="" id="id_gender_1" />
+                            Female</label>
+                    </div>
+                </div>
+                <div class="text-center">
+                        <input type="submit" class="btn btn-warning p-2" value="Register"  style="width: 200px;"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

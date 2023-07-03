@@ -1,0 +1,66 @@
+{% load static %}
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/rate.css' %}">
+
+</head>
+
+<body>
+  <center>
+  <section>
+    <div id="contact-form">
+      <h2>Feedback</h2>
+      <form method="POST" action="">
+      {% csrf_token %}  
+        <div>
+          <label><span>Name :</span><input name="un" type="text" placeholder="Name" /></label>
+        </div>
+        <div>
+          <label style='border: 1px solid transparent;'><span>Rate :</span><input name="r" placeholder="Rate 1 to 10" type="number" min="0" max="10"  /></label>
+        </div>
+       
+        <br>
+        <div>
+          <label><span>Message :</span><textarea name="msg" placeholder="Message"></textarea></label>
+          <div>
+            <button name="submit" type="submit" value="Send" >send</button>
+      </form>
+    </div>
+    <br><hr>
+  </section>
+  <div>
+    {% for l in data %}
+    <div>
+      <a class="btn">
+        <div class="item">
+          <h3>Username: {{l.username}} Id :{{l.id}}</h3>
+          <h3>Rating : {{l.rating}}<h3>
+          <h3>Review: {{l.feed_data}}<h3>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</center>
+  <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>
+
+
+ <!-- <div class="rate">
+          <input type="radio" id="star5" name="rate" value="5" />
+          <label for="star5" title="text">5 stars</label>
+          <input type="radio" id="star4" name="rate" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star3" name="rate" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star2" name="rate" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star1" name="rate" value="1" />
+          <label for="star1" title="text">1 star</label>
+        </div> -->

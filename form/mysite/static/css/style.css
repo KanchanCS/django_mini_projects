@@ -1,0 +1,13 @@
+#id_gender_0, #id_gender_1{
+  border-radius: 50% !important;
+  width: 10px;
+  border: 1px solid black !important;
+  padding: 5px;
+}
+#id_gender_0:hover {
+  background-color: rgb(65, 206, 30);
+}
+ #id_gender_1:hover{
+    background-color: rgb(89, 204, 18);
+  
+}

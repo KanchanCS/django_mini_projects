@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h3>All DATA</h3>
+        
+          <div class="row">
+            <form  method="get">
+                {{filter.form}}
+                <button class"btn" type="submit">Filter</button>
+            </form>
+        </div>
+    {% for book in filter.qs %}
+        <div class="col-md-4 mb-5 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    
+                    <h4>Title:{{ book.title }}</h1>
+                    <a href="{{ book.url }}" class="card-link">URL:</a>
+                    <h4>Createdate:{{ book.createdate }}</h1>
+                </div>
+                <a class="dropdown-item" href="#">Edit</a>
+            </div>
+        </div>
+        {% empty %}
+        <li>No posts yet.</li>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
