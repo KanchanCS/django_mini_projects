@@ -1,1 +1,2 @@
-# django_mini_projects
+# Here is all Django Prjects
+
