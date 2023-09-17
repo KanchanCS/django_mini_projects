@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% load static %} {% block content %}  
+<div class="container mt-5">
+  <h1>Blog</h1>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4">
+          <div class="card">
+            
+            <div class="card-body">
+              {% if post.image %}<img src="{{post.image.url}}" alt="">{% endif %}
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.category}}</p>
+              <p class="card-text">Author by: {{post.author}}</p>
+              <small class="text-muted">{{post.create_date}}</small> 
+              <a href="{% url 'blog:detail' post.id %}" class="btn btn-primary btn-sm">View Blog</a>             
+            </div>
+          
+          </div>
+        </div>
+        {% endfor %}          
+      </div>      
+</div>
+{% endblock content %}
+

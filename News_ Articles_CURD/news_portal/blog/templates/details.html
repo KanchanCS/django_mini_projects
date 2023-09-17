@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block msg %}
+{% if messages %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {%  endif %}>
+  <strong>{{message}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock msg %}
+
+{% block content %}
+<div class="container ">
+  <div class="card mt-5">
+    
+      <h5 class="card-header ">Featured</h5>
+      <div class="card-body">
+        {% if post.image %}<img src="{{post.image.url}}" alt="">{% endif %}
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.content}}</p>
+        <a href="{% url 'blog:editpost' post.id  %}" class="btn btn-primary btn-sm">Edit</a>
+        
+        <form action="{% url 'blog:deletepost' post.id %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+        </form>
+      </div>  
+    </div>
+
+  </div> 
+{% endblock %}
+
