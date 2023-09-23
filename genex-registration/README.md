@@ -1,4 +1,5 @@
 #  How to run this projects ?
+The Django Custom User Registrations and Login project aims to provide a customizable user registration and login system using Django, a popular Python web framework. The project provides a foundation for building user authentication functionality tailored to your specific needs.
 
 # clone github repo.
 
